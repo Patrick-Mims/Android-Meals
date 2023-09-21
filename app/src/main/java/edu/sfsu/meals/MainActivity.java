@@ -1,6 +1,7 @@
 package edu.sfsu.meals;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -15,12 +16,11 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RecyclerView recyclerView;
 
-    private static final String api = "https://www.themealdb.com/api/json/v1/1/search.php?f=a";
+    private static final String api = "https://www.themealdb.com/api/json/v1/1/search.php?f=t";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         dataModel = new ArrayList<>();

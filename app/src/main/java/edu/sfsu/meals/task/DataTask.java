@@ -1,9 +1,15 @@
 package edu.sfsu.meals.task;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,16 +25,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import edu.sfsu.meals.MainActivity;
+import edu.sfsu.meals.R;
 import edu.sfsu.meals.adapter.DataAdapter;
 import edu.sfsu.meals.model.DataModel;
 
 //Started Work: September 18th, 2023
 
 public class DataTask extends AsyncTask<String, Integer, String> {
+    Dialog dialog;
     Context context;
     RecyclerView recyclerView;
     ProgressBar progressBar;
     ArrayList<DataModel> model;
+    TextView tvLoading, tvPer;
 
     public DataTask(Context context, RecyclerView recyclerView, ProgressBar progressBar, ArrayList<DataModel> model) {
         this.context = context;
@@ -37,8 +47,17 @@ public class DataTask extends AsyncTask<String, Integer, String> {
         this.model = model;
     }
 
-    protected void progressDialog() {
-       super.onPreExecute();
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        dialog = new Dialog(context);
+        dialog.setContentView(R.layout.progressbar_layout);
+
+        progressBar = (ProgressBar)dialog.findViewById(R.id.progress_bar);
+
+        dialog.show();
     }
     @Override
     protected String doInBackground(String... params) {
@@ -86,12 +105,17 @@ public class DataTask extends AsyncTask<String, Integer, String> {
         return null;
     }
 
-    protected void onProgessUpdate(String... progress) {
-        super.onPostExecute(progress[0]);
+    protected void onProgessUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        progressBar.setProgress(values[0]);
+        tvLoading.setText("Loading..." + values[0] + " %");
+        tvPer.setText(values[0] + " %");
     }
 
     protected void onPostExecute(String result) {
        super.onPostExecute(result);
+
+       dialog.dismiss();
 
         try {
             JSONObject root = new JSONObject(result);

@@ -35,7 +35,7 @@ dependencies {
     //implementation ("group: com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.11")
     //implementation("com.squareup.okhttp3:okhttps:3.4.1")
     //implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
-
+    implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
     implementation("com.squareup.okhttp3:okhttp")
