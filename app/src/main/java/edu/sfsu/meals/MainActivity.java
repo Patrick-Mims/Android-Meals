@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<DataModel> dataModel = null;
     ProgressBar progressBar;
     RecyclerView recyclerView;
-    private static final String api = "https://www.themealdb.com/api/json/v1/1/search.php?f=r";
+    private static final String api = "https://www.themealdb.com/api/json/v1/1/search.php?f=k";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

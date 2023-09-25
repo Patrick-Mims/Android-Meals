@@ -47,7 +47,6 @@ public class DataTask extends AsyncTask<String, Integer, String> {
         this.model = model;
     }
 
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -102,6 +101,7 @@ public class DataTask extends AsyncTask<String, Integer, String> {
                 urlConnection.disconnect();
             }
         }
+
         return null;
     }
 

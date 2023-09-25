@@ -118,10 +118,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         Picasso.get().load(Uri.parse(model.get(position).getStrMealThumb())).resize(imageWidth, imageHeight).centerCrop().into(holder.imageView);
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(context, DetailActivity.class);
+
                 intent.putExtra(EXTRA_ID, mod.getIdMeal());
                 intent.putExtra(EXTRA_MEAL, mod.getStrMeal());
                 intent.putExtra(EXTRA_DRINK_ALTERNATE, mod.getStrDrinkAlternate());
